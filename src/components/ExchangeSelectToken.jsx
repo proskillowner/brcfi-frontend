@@ -3,7 +3,7 @@ import DataList from "./DataList";
 import { searchOptions } from "../assets/data";
 import ordinalIcon from "../assets/icons/ordinals.svg"
 import btcIcon from "../assets/icons/btc.png"
-import btbrIcon from "../assets/icons/btbr.png"
+import brcfiIcon from "../assets/icons/brcfi.png"
 import { useResponsiveView } from "../utils/customHooks";
 import { useModalState } from "../context/ModalContext";
 
@@ -61,7 +61,7 @@ function ExchangeSelectToken({ amount, setAmount, token, setToken, list, tokenDa
             >
                 <div className="mb-3">{label}</div>
                 <div className="flex items-center">
-                    <img className="w-[32px] h-[32px] icon" src={selectedOption?.tick === 'BTC' ? btcIcon : selectedOption?.tick === 'btbr'? btbrIcon : (() => {
+                    <img className="w-[32px] h-[32px] icon" src={selectedOption?.tick === 'BTC' ? btcIcon : selectedOption?.tick.toLowerCase() === 'bzfi'? brcfiIcon : (() => {
                             const selectedItem = tokenDataList?.filter(item => item.symbol.toLowerCase() === selectedOption?.tick.toLowerCase());
                             if (selectedItem && selectedItem.length > 0) {
                                 return selectedItem[0].iconUrl + "?size=30x30";

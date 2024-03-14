@@ -2,7 +2,7 @@ import React from "react";
 
 function ExchangeIcon() {
     return (
-        <svg width="56" height="64" viewBox="0 0 56 64" xmlns="http://www.w3.org/2000/svg">
+        <svg width="56" height="64" viewBox="0 0 60 70" xmlns="http://www.w3.org/2000/svg">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"

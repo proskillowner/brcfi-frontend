@@ -1,11 +1,14 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
-import logo from "../assets/images/logo.png";
+import logo from "../assets/images/logo-baner.png";
 // import logoDark from "../assets/logo/dexordi-dark.svg";
 
 import ExchangeIcon from "../assets/icons/ExchangeIcon";
 import DashboardIcon from "../assets/icons/DashboardIcon";
+import BrcScanIcon from "../assets/icons/BrcScanIcon"
+import LaunchGround from "../assets/icons/LaunchGround"
+import Wallet from "../assets/icons/Wallet"
 import DAOIcon from "../assets/icons/DAOIcon";
 import SwapIcon from "../assets/icons/SwapIcon";
 import PoolIcon from "../assets/icons/PoolIcon";
@@ -17,6 +20,7 @@ import twitterIcon from "../assets/icons/twitter.svg";
 import mediumIcon from "../assets/icons/Medium.svg";
 import telegramIcon from "../assets/icons/telegram.svg";
 import discordIcon from "../assets/icons/discord.svg"
+import webIcon from "../assets/icons/web.svg";
 import lightIcon from "../assets/icons/light-icon.png";
 import darkIcon from "../assets/icons/dark-icon.png";
 
@@ -33,13 +37,13 @@ function Aside({ setToggleMobileMenu }) {
     }
     return (
         <aside className={`app__menu`}>
-            <figure className="logo__container_aside hide-mobile" onClick={() => { navigate('/') }}>
+            <figure className="logo__container_aside hide-mobile gap-3" onClick={() => { navigate('/') }}>
                 <img
                     src={logo} alt="logo"
-                    width={51}
-                    height={48}
+                    width={200}
+                    height={50}
                 />
-                <span>BitcSwap</span>
+                {/* <span>BrcFi</span> */}
             </figure>
 
             <ul className="nav__list">
@@ -68,9 +72,27 @@ function Aside({ setToggleMobileMenu }) {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink className="d-btn d-btn-primary" to={"/reward"} onClick={closeMenu}>
+                    <NavLink className="d-btn d-btn-primary" to={"/lending"} onClick={closeMenu}>
                         <PoolIcon />
-                        Reward
+                        Lending/Borrowing
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink className="d-btn d-btn-primary" to={"/launchground"} onClick={closeMenu}>
+                        <LaunchGround />
+                        LaunchGround
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink className="d-btn d-btn-primary" to={"/brcscan"} onClick={closeMenu}>
+                        <BrcScanIcon />
+                        BrcScan
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink className="d-btn d-btn-primary" to={"/wallet"} onClick={closeMenu}>
+                        <Wallet />
+                        Wallet
                     </NavLink>
                 </li>
 
@@ -86,7 +108,7 @@ function Aside({ setToggleMobileMenu }) {
                         NFT Upload
                     </NavLink>
                 </li> */}
-                <li>
+                {/* <li>
                     <button className="d-btn d-btn-primary noeffect" onClick={closeMenu}>
                         <LinkIcon />
                         More
@@ -94,29 +116,27 @@ function Aside({ setToggleMobileMenu }) {
 
                     <ul>
                         <li>
+                            <a href="https://brcfi.io" target="_blank">Official website</a>
+                        </li>
+                        <li>
                             <a href="https://doc.bitcswap.io/" target="_blank">Doc</a>
                         </li>
-                        {/* <li>
-                            <a href="#" target="_blank">Vote</a>
-                        </li> */}
-                        <li>
-                            <a href="https://github.com/bitcswap" target="_blank">Github</a>
-                        </li>
+                        
                     </ul>
-                </li>
+                </li> */}
             </ul>
 
             <footer>
-                <p>Contact</p>
+                {/* <p>Contact</p> */}
 
                 <ul>
                     <li>
-                        <a href="https://twitter.com/bitcSwap" target="_blank">
+                        <a href="https://twitter.com/Brc_Fi" target="_blank">
                             <img src={twitterIcon} alt="twitter" />
                         </a>
                     </li>
                     <li>
-                        <a href="https://t.me/bitcSwap_brc20" target="_blank">
+                        <a href="https://t.me/BRC_Fi" target="_blank">
                             <img src={telegramIcon} alt="telegram" />
                         </a>
                     </li>
@@ -126,15 +146,15 @@ function Aside({ setToggleMobileMenu }) {
                         </a>
                     </li> */}
                     <li>
-                        <a href="https://discord.gg/73zsCJuN5N" target="_blank">
-                            <img src={discordIcon} alt="discord" />
+                        <a href="https://brcfi.io" target="_blank">
+                            <img src={webIcon} alt="discord" />
                         </a>
                     </li>
                 </ul>
 
-                <div className="switch-theme" onClick={updateTheme}>
+                {/* <div className="switch-theme" onClick={updateTheme}>
                     <img src={authState.preferDark ? lightIcon : darkIcon} alt="dark theme" />
-                </div>
+                </div> */}
             </footer>
         </aside>
     );

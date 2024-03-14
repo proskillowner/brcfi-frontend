@@ -3,7 +3,7 @@ import DataList from "./DataList";
 import { searchOptions } from "../assets/data";
 import ordinalIcon from "../assets/icons/ordinals.svg"
 import btcIcon from "../assets/icons/btc.png"
-import btbrIcon from "../assets/icons/btbr.png"
+import brcfiIcon from "../assets/icons/brcfi.png"
 import { useResponsiveView } from "../utils/customHooks";
 import { useModalState } from "../context/ModalContext";
 
@@ -73,7 +73,7 @@ function ExchangeSelect({ amount, setAmount, token, setToken, list, tokenDataLis
                         disabled={disabled}
                         onClick={handleToggleDataList}
                     >
-                        <img src={selectedOption.tick == 'BTC' ? btcIcon : selectedOption?.tick === 'btbr'? btbrIcon: (() => {
+                        <img src={selectedOption.tick == 'BTC' ? btcIcon : selectedOption?.tick.toLowerCase() === 'bzfi'? brcfiIcon: (() => {
                             const selectedItem = tokenDataList?.filter(item => item.symbol.toLowerCase() === selectedOption.tick.toLowerCase());
                             if (selectedItem && selectedItem.length > 0) {
                                 // console.log(selectedItem)

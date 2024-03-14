@@ -33,7 +33,10 @@ import okxWalletIcon from "./assets/icons/okxWalletIcon.png";
 import metamaskWalletIcon from "./assets/icons/metamaskWalletIcon.png";
 import unisatWalletIcon from "./assets/icons/unisatWalletIcon.png";
 import Modal from "./components/Modal";
-import Reward from "./pages/Reward";
+import Lending from "./pages/Lending";
+import BrcScan from "./pages/BrcScan";
+import LaunchGround from "./pages/LaunchGround";
+import Wallet from "./pages/Wallet";
 
 const networkOptions = [
     {
@@ -181,7 +184,10 @@ function App() {
                         <Route path="/swap" element={<Swap />}></Route>
                         <Route path="/dao" element={<DAO />}></Route>
                         <Route path="/bridge" element={<Bridge />}></Route>
-                        <Route path="/reward" element={<Reward />}></Route>
+                        <Route path="/lending" element={<Lending />}></Route>
+                        <Route path="/brcscan" element={<BrcScan />}></Route>
+                        <Route path="/launchground" element={<LaunchGround />}></Route>
+                        <Route path="/wallet" element={<Wallet />}></Route>
                     </Routes>
 
                     {modalState.addModalContainer && (

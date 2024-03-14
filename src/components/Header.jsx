@@ -9,6 +9,7 @@ import ClipIcon from "../assets/icons/ClipIcon";
 import RightArrow from "../assets/icons/RightArrow";
 
 import logo from "../assets/images/logo.png";
+import unisat_icon from "../assets/icons/unisatWalletIcon.png";
 import MobileMenuOpenIcon from "../assets/icons/MobileMenuOpenIcon";
 import MobileMenuCloseIcon from "../assets/icons/MobileMenuCloseIcon";
 import Aside from "./Aside";
@@ -66,7 +67,7 @@ function Header({ toggleWalletList, toggleNetworkList, toggleMobileMenu, setTogg
                         className="d-btn d-btn-primary d-btn-grey flex items-center gap-6"
                         onClick={connectWallet}
                     >
-                        <WalletIcon viewBox="0 0 22 22" classes="icon" />
+                         <img src={unisat_icon} width={31} height={31}/>
                         {connected ? address?.slice(0, 4) + '...' + address?.slice(-4) : 'Connect'}
                     </button>
                 )}
@@ -82,7 +83,7 @@ function Header({ toggleWalletList, toggleNetworkList, toggleMobileMenu, setTogg
 
                 {!isMobileView_800 && (
                     <button className="d-btn d-btn-outline d-btn-narrow flex items-center gap-6" onClick={connectWallet}>
-                        <WalletIcon viewBox="0 0 22 22" classes="icon" />
+                        <img src={unisat_icon} width={31} height={31}/>
                         {!connected ? 'Connect' : address?.slice(0, 5) + '...' + address?.slice(-5)}
                     </button>
                 )}

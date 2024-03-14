@@ -24,7 +24,7 @@ const authActions = {
 };
 
 const initialState = {
-  preferDark: window.matchMedia("(prefers-color-scheme: dark)").matches,
+  preferDark: true,//window.matchMedia("(prefers-color-scheme: dark)").matches,
   token: "",
   user: null,
   wallet: 1,
@@ -227,7 +227,7 @@ export function AuthStateProvider({ children }) {
   }, [])
 
   useEffect(() => {
-    const isdark = localStorage.getItem('theme');
+    const isdark = true;//localStorage.getItem('theme');
     authDispatch({ type: authActions.SET_THEME, payload: { preferDark: isdark } })
 
     if (window.unisat) setUnisatWallet(window.unisat);

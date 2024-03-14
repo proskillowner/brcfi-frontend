@@ -8,7 +8,7 @@ export const getWeightApi = `${host}/getfee/`;
 export const tokenListApi = `${host}/tokenlist/`;
 export const poolTokenListApi = `${host}/pooltokenlist/`
 export const tokenInfoApi = `${host}/tokeninfo/pooltokenlist`;
-export const tokenDataListApi = `https://api.coinranking.com/v2/coins?tags[]=brc-20&limit=5000`;
+export const tokenDataListApi = `https://api.coinranking.com/v2/coins?tags[]=brc-20&limit=99`;
 export const poolListApi = `${host}/getpool/`;
 export const createPoolApi = `${host}/createpool`;
 export const addLiquidityApi = `${host}/addliquidity`;

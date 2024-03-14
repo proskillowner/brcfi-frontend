@@ -28,7 +28,6 @@
         .card {
             flex: 1 1 18rem;
             background-color: getColor(backgroundDim);
-            padding: 3rem 1rem;
             border-radius: $border-radius;
             text-align: center;
             flex-direction: row;
@@ -70,7 +69,7 @@
         grid-template-columns: 2fr 1fr;
 
         &__info {
-            margin-top: 15px;
+            margin-top: 0px;
 
             section {
                 padding: 3rem;

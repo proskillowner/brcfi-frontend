@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import searchIcon from "../assets/icons/search.svg";
 import ordinalIcon from "../assets/icons/ordinals.svg"
 import btcIcon from "../assets/icons/btc.png"
-import btbrIcon from "../assets/icons/btbr.png"
+import brcfiIcon from "../assets/icons/brcfi.png"
 
 function useOutsideAlerter(ref, show, cb) {
     useEffect(() => {
@@ -62,6 +62,13 @@ function DataList({
     }, [options])
 
     useOutsideAlerter(inputRef, show, handleBlur)
+
+    const handleQuick = (quick_tick) => {
+        let option = filteredOptions.find((option) => option.tick.toLowerCase() === quick_tick);
+        if (option != null && option.length > 0) {
+            setSelectedOption(option[0])
+        }
+    }
     return (
         <section className="datalist__container" style={{ display: show ? 'inline' : 'none' }} ref={inputRef}>
             <div className="datalist__input">
@@ -87,7 +94,11 @@ function DataList({
                     </svg>
                 )}
             </div>
-
+            {/* <div className="flex gap-1 pt-2">
+                <p className="flex text-center px-5 py-1 bg-[#1A1D1F] rounded-full hover:bg-black" onClick={() => handleQuick('sats')}>SATS</p>
+                <p className="flex text-center px-5 py-1 bg-[#1A1D1F] rounded-full hover:bg-black" onClick={() => handleQuick('mubi')}>MUBI</p>
+                <p className="flex text-center px-5 py-1 bg-[#1A1D1F] rounded-full hover:bg-black" onClick={() => handleQuick('oxbt')}>OXBT</p>
+            </div> */}
             <div className="datalist__options">
                 {filteredOptions.map((option, index) => (
                     <div
@@ -104,7 +115,7 @@ function DataList({
                             <>
                                 <div className="flex justify-between w-[100%]">
                                     <div className="flex" style={{alignItems: "center"}}>
-                                        <img src={option.tick === 'BTC' ? btcIcon : option.tick === 'btbr'? btbrIcon : (() => {
+                                        <img src={option.tick === 'BTC' ? btcIcon : option.tick.toLowerCase() === 'bzfi'? brcfiIcon : (() => {
                                             const selectedItem = appContext?.tokenDataList?.filter(item => item.symbol.toLowerCase() === option.tick.toLowerCase());
                                             if (selectedItem && selectedItem.length > 0) {
                                                 return selectedItem[0].iconUrl + "?size=30x30";

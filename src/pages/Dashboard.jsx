@@ -10,7 +10,7 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 
-import rocketImage from "../assets/images/rocket.png";
+import BitcoinIcon from "../assets/images/rocket.png";
 
 import ratioIcon from "../assets/icons/ratio.svg";
 import oridnals from "../assets/icons/ordinals.svg";
@@ -105,13 +105,13 @@ function Dashboard() {
     }, [chartData, period]);
     return (
         <section className="dashboard__container">
-            <h1>BitcSwap</h1>
-            <p>The First AMM DEX based on BRC-20 token standard</p>
+            <h1>BrcFi</h1>
+            <p>Buy, Trade, Hold, Lend, Borrow, Explore and Launch on BrcFi</p>
 
             <section className="cards__container">
                 <Link to="/swap" className="card glass-effect">
                     <div className="flex items-center exchange-icon">
-                        <ExchangeIcon />
+                        {/* <ExchangeIcon /> */}
                         <h3>Swap</h3>
                     </div>
                     <div className="text-[31px] text-[#6F767E]">{'->'}</div>
@@ -119,14 +119,14 @@ function Dashboard() {
 
                 <Link to="/Liquidity" className="card glass-effect">
                     <div className="flex items-center swap-icon">
-                        <SwapIcon />
+                        {/* <img src={BitcoinIcon} width={40} height={40}/> */}
                         <h3>Liquidity</h3>
                     </div>
                     <div className="text-[31px] text-[#6F767E]">{'->'}</div>
                 </Link>
                 <Link to={"/pool"} className="card glass-effect">
                     <div className="flex items-center pool-icon">
-                        <LPIcon />
+                        {/* <LPIcon /> */}
                         <h3>Pool</h3>
                     </div>
                     <div className="text-[31px] text-[#6F767E]">{'->'}</div>
@@ -153,7 +153,7 @@ function Dashboard() {
                     </header>
 
                     <div className="absolute top-[25px] md:ml-[45%] ml-[30px] text-center">
-                        <div className="md:text-[24px] text-[14px]">Ordinals</div>
+                        <div className="md:text-[24px] text-[14px]">ORDI</div>
                         <div className="md:text-[32px] text-[20px] font-medium">{currentPrice}</div>
                         {negativePercent && <div className="md:text-[18px] text-[12px] text-[#D74136]">{percent}</div>}
                         {!negativePercent && <div className="md:text-[18px] text-[12px] text-[#3BDC68]">{percent}</div>}
@@ -171,8 +171,8 @@ function Dashboard() {
                         </p>
                     </section>
                     <section className="glass-effect">
-                        <p className="!text-[#448AFF]">The 1st AMM Dex & DAO based on brc-20 token standard</p>
-                        <img src={rocketImage} alt="rocket" />
+                        <p className="!text-[#448AFF]">Your One-Stop DeFi Hub on Bitcoin. Unlock endless possibilities in the world of BRC20 tokens.</p>
+                        {/* <img src={rocketImage} alt="rocket" /> */}
                     </section>
                 </article>
             </section>

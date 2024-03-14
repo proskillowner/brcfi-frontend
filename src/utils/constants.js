@@ -1,6 +1,7 @@
 export const orderStatusArray = ['Listed', 'Processing', 'Finalizing', 'Failed', 'Confirmed']
 
 export const factoryWalletAddress = 'tb1purkq56fu4x9sqpkf9xwgvpwllc0d7qndsvfc6769p0ru9qt347ks008u4y'
+export const API_KEY = 'b8ddc98e36141f90507de565a76b5bf7a4de2c69123d11afa2e8faf1380e2cf7'
 
 
 export const ORDER_TYPE_CREATE_POOL = 1
