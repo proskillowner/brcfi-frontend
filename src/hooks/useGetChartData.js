@@ -2,8 +2,6 @@ import React, { useRef, useEffect, useState } from 'react'
 import axios from 'axios';
 import { dayilyURL, monthlyURL, weeklyURL, yearlyURL } from '../utils/apiRoutes';
 
-
-
 export default function useGetChartData() {
 
   const [chartData, setChartData] = useState(null);

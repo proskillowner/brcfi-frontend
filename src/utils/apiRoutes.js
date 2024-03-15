@@ -1,15 +1,12 @@
-// export const host = 'http://95.217.106.211:443'
-// export const host = 'http://94.130.34.216:443'
-export const host = 'https://api.bitcswap.io';
-// export const host = 'https://65.108.203.216:443'
+export const host = 'https://bitcswap-api.proskillowner.com';
 
-export const factoryWalletApi = `${host}/getvaultaddress/`;
-export const getWeightApi = `${host}/getfee/`;
-export const tokenListApi = `${host}/tokenlist/`;
-export const poolTokenListApi = `${host}/pooltokenlist/`
+export const getVaultAddressApi = `${host}/getVaultAddress`;
+export const getWeightApi = `${host}/getfee`;
+export const tokenListApi = `${host}/getTokenList`;
+export const poolTokenListApi = `${host}/getPoolTokenList`;
 export const tokenInfoApi = `${host}/tokeninfo/pooltokenlist`;
 export const tokenDataListApi = `https://api.coinranking.com/v2/coins?tags[]=brc-20&limit=99`;
-export const poolListApi = `${host}/getpool/`;
+export const poolListApi = `${host}/getpool`;
 export const createPoolApi = `${host}/createpool`;
 export const addLiquidityApi = `${host}/addliquidity`;
 export const addLiquidityAmountApi = `${host}/addliquidity/tokenamount`;
@@ -17,12 +14,12 @@ export const removeLiquidityApi = `${host}/removeliquidity`;
 export const removeLiquidityAmountApi = `${host}/removeliquidity/tokenamount`;
 export const swapApi = `${host}/swap`;
 export const swapAmountApi = `${host}/swap/tokenamount`;
-export const getOrderListApi = `${host}/getorder/`;
-export const getBalanceApi = `${host}/gettokenbalance/`;
-export const deployTokenApi = `${host}/deploy/`;
+export const getMyOrderListApi = `${host}/getMyOrderList`;
+export const getBalanceApi = `${host}/gettokenbalance`;
+export const deployTokenApi = `${host}/deploy`;
 export const getWhitelistApi = `${host}/getwhitelisttoken`;
-export const updateOrderApi = `${host}/updateorder/`
-export const getAdminApi = `${host}/getadmin`
+export const updateOrderApi = `${host}/updateorder`;
+export const getAdminApi = `${host}/getadmin`;
 export const getRewardsApi = (add) => {
     return `${host}/getbtcbalance/platform/${add}/list`
 }

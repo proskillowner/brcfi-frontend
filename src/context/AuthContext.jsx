@@ -6,7 +6,7 @@ import { hex, base64 } from "@scure/base";
 
 import { useToast } from "../hooks/useToast";
 import useFetch from "../hooks/useFetch";
-import { getOrderListApi, getRewardsApi, tokenDataListApi, tokenListApi } from "../utils/apiRoutes";
+import { getMyOrderListApi, getRewardsApi, tokenDataListApi, tokenListApi } from "../utils/apiRoutes";
 import { defaultToken } from "../utils/constants";
 import { useTokenSelect } from "../hooks/useTokenSelect";
 import { useLoadData } from "../hooks/useLoadData";
@@ -107,7 +107,7 @@ export function AuthStateProvider({ children }) {
 
   const [tokenList, tokenSelectList, poolTokenLists, tokenOne, tokenTwo, setTokenOne, setTokenTwo] = useTokenSelect(address);
   const [factoryWallet, poolList, whiteist] = useLoadData(address);
-  const [orderList, fetchOrderList] = useFetch(getOrderListApi, { method: 'POST', data: { sender_address: address } })
+  const [orderList, fetchOrderList] = useFetch(`${getMyOrderListApi}?address=${address}`)
   // const [rewardsData, fetchRewardsData] = useFetch(getRewardsApi(address));
   const [setTokenPair, currentPool, currentPoolLoading, error,] = useGetPool(tokenOne, tokenTwo);
   const [feeWeightList, fetchWeightList, calculateFee] = useFeeWeight();
