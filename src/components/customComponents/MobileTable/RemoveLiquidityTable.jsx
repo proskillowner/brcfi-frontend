@@ -30,7 +30,7 @@ export function RemoveLiquidityTable({ dataSource }) {
     const status = record.order_status;
     const transfer = record.lp_token_transfer;
     const token = record.lp_token;
-    const amount = id == 1 ? record.token_amount1 : record.token_amount2;
+    const amount = id == 1 ? record.token1_amount : record.token2_amount;
     const inscriptionId = transfer ? transfer.inscription : ''
     const disabled = (inscriptionId == '' || localStorage.getItem(inscriptionId) == 'true')
     const targetWallet = poolList.find((pool) => pool.lp_token === record.lp_token).address;
@@ -74,7 +74,7 @@ export function RemoveLiquidityTable({ dataSource }) {
             <p>No</p>
             <h4>{item.no}</h4>
             <p className="flex items-center gap-8">
-              <TimeIcon classes="icon" /> {formatTime(item.ordered_time)}
+              <TimeIcon classes="icon" /> {formatTime(item.start_time)}
             </p>
           </div>
 
@@ -108,7 +108,7 @@ export function RemoveLiquidityTable({ dataSource }) {
 
           <div>
             <p>Token Amount</p>
-            {item.token_amount1 ? <h4>{item.token_amount1 + '/' + item.token_amount2}</h4> : <p></p>}
+            {item.token1_amount ? <h4>{item.token1_amount + '/' + item.token2_amount}</h4> : <p></p>}
             <p>Send LP Token</p>
           </div>
 

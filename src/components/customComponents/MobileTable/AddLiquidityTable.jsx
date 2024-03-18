@@ -29,7 +29,7 @@ export function AddLiquidityTable({ dataSource }) {
     const status = record.order_status;
     const transfer = id == 1 ? record.token_transfer1 : record.token_transfer2;
     const token = id == 1 ? record.token1 : record.token2;
-    const amount = id == 1 ? record.token_amount1 : record.token_amount2;
+    const amount = id == 1 ? record.token1_amount : record.token2_amount;
     const inscriptionId = transfer ? transfer.inscription : ''
     const disabled = (status != 11 || localStorage.getItem(inscriptionId) == 'true')
     const targetWallet = poolList.length ? poolList.find((pool) => pool.lp_token === record.lp_token).address : '';
@@ -100,7 +100,7 @@ export function AddLiquidityTable({ dataSource }) {
 
           <div>
             <p>Token Amount</p>
-            <h4>{item.token1 === 'BTC'? item.token_amount1/ 1e8: item.token_amount1 + '/' + item.token2 === 'BTC'? item.token_amount2/ 1e8: item.token_amount2}</h4>
+            <h4>{item.token1 === 'BTC'? item.token1_amount/ 1e8: item.token1_amount + '/' + item.token2 === 'BTC'? item.token2_amount/ 1e8: item.token2_amount}</h4>
             <p>Send Token1  </p>
           </div>
 

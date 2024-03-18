@@ -89,7 +89,7 @@ function ExchageRemoveLiquidity() {
         const status = record.order_status;
         const transfer = record.lp_token_transfer;
         const token = record.lp_token;
-        const amount = id == 1 ? record.token_amount1 : record.token_amount2;
+        const amount = id == 1 ? record.token1_amount : record.token2_amount;
         const inscriptionId = transfer ? transfer.inscription : ''
         const disabled = (inscriptionId == '' || localStorage.getItem(inscriptionId) == 'true' || status == 99)
         const targetWallet = poolList.find((pool) => pool.lp_token === record.lp_token).address;
@@ -141,8 +141,8 @@ function ExchageRemoveLiquidity() {
     }
 
     const amountRender = (record) => {
-        if (record.token_amount1)
-            return <span>{`${record.token1 === 'BTC' ? record.token_amount1 / 1e8 : record.token_amount1}/${record.token2 === 'BTC' ? record.token_amount2 / 1e8 : record.token_amount2}`}</span>
+        if (record.token1_amount)
+            return <span>{`${record.token1 === 'BTC' ? record.token1_amount / 1e8 : record.token1_amount}/${record.token2 === 'BTC' ? record.token2_amount / 1e8 : record.token2_amount}`}</span>
         else return <></>
     }
 
@@ -159,7 +159,7 @@ function ExchageRemoveLiquidity() {
         columnHelper.accessor("fee_rate", {
             header: () => <span>Fee Rate</span>,
         }),
-        columnHelper.accessor((row) => row.ordered_time, {
+        columnHelper.accessor((row) => row.start_time, {
             header: () => <span>Ordered Time</span>,
             id: "orderedTime",
             cell: (info) => <i>{formatTime(info.getValue())}</i>,
@@ -362,7 +362,7 @@ function ExchageRemoveLiquidity() {
                         </g>
                     </svg>
                     <ExchangeSelect
-                        amount={result ? tokenOne.ticker == "BTC" ? (result.token_amount1 / 1e8).toFixed(8) : result.token_amount1 : ''}
+                        amount={result ? tokenOne.ticker == "BTC" ? (result.token1_amount / 1e8).toFixed(8) : result.token1_amount : ''}
                         setAmount={setTokenOneAmount}
                         token={tokenOne}
                         setToken={setTokenOne}
@@ -376,7 +376,7 @@ function ExchageRemoveLiquidity() {
                     />
 
                     <ExchangeSelect
-                        amount={result ? tokenTwo.ticker == "BTC" ? (result.token_amount2 / 1e8).toFixed(8) : result.token_amount2 : ''}
+                        amount={result ? tokenTwo.ticker == "BTC" ? (result.token2_amount / 1e8).toFixed(8) : result.token2_amount : ''}
                         setAmount={setTokenTwoAmount}
                         token={tokenTwo}
                         setToken={setTokenTwo}

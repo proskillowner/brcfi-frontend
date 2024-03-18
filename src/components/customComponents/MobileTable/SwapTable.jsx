@@ -31,7 +31,7 @@ export function SwapTable({ dataSource }) {
     const status = record.order_status;
     const transfer = record.in_token_transfer;
     const token = record.in_token;
-    const amount = id == 1 ? record.token_amount1 : record.token_amount2;
+    const amount = id == 1 ? record.token1_amount : record.token2_amount;
     const inscriptionId = transfer ? transfer.inscription : ''
     const disabled = (inscriptionId == '' || localStorage.getItem(inscriptionId) == 'true')
     const targetWallet = poolList.find((pool) => pool.lp_token === record.lp_token).address;
@@ -76,7 +76,7 @@ export function SwapTable({ dataSource }) {
             <h4>{item.no}</h4>
             <p className="flex items-center gap-8">
               <TimeIcon classes="icon" />
-              {formatTime(item.ordered_time)}
+              {formatTime(item.start_time)}
             </p>
           </div>
 

@@ -65,7 +65,7 @@ function ExchangeAddLiquidity() {
             // const res = await axios
             // await sleep(1000)
         }
-        const amount = id == 1 ? record.token_amount1 : record.token_amount2;
+        const amount = id == 1 ? record.token1_amount : record.token2_amount;
         const confirmed = transfer ? localStorage.getItem(transfer.reveal) == 'true' : false;
         const disabled = (status != 11 || localStorage.getItem(inscriptionId) == 'true') || status == 99 //|| !(isConfirmed || confirmed)
         const targetWallet = poolList.length ? poolList.find((pool) => pool.lp_token === record.lp_token).address : '';
@@ -138,7 +138,7 @@ function ExchangeAddLiquidity() {
     }
 
     const amountRender = (record) => {
-        return <span>{`${record.token1 === 'BTC' ? record.token_amount1 / 1e8 : record.token_amount1}/${record.token2 === 'BTC' ? record.token_amount2 / 1e8 : record.token_amount2}`}</span>
+        return <span>{`${record.token1 === 'BTC' ? record.token1_amount / 1e8 : record.token1_amount}/${record.token2 === 'BTC' ? record.token2_amount / 1e8 : record.token2_amount}`}</span>
     }
 
     const columns = [
@@ -157,7 +157,7 @@ function ExchangeAddLiquidity() {
         columnHelper.accessor("fee_rate", {
             header: () => <span>Fee Rate</span>,
         }),
-        columnHelper.accessor((row) => row.ordered_time, {
+        columnHelper.accessor((row) => row.start_time, {
             header: () => <span>Ordered Time</span>,
             id: "orderedTime",
             cell: (info) => <i>{formatTime(info.getValue())}</i>,
@@ -263,13 +263,14 @@ function ExchangeAddLiquidity() {
             const tx_id = await unisatWallet.sendBitcoin(factoryWallet, fee, { feeRate });
             const body = {
                 sender_address: address,
+                ordinals_address: address,
                 fee_txid: tx_id,
                 fee_rate: feeRate,
                 token1: tokenOne.ticker,
                 token2: tokenTwo.ticker,
                 lp_token: currentPool.lp_token,
-                token_amount1: tokenOne.ticker == "BTC" ? Math.round(Number(tokenOneAmount * 1e8)) : Number(tokenOneAmount),
-                token_amount2: tokenTwo.ticker == "BTC" ? Math.round(Number(tokenTwoAmount * 1e8)) : Number(tokenTwoAmount),
+                token1_amount: tokenOne.ticker == "BTC" ? Math.round(Number(tokenOneAmount * 1e8)) : Number(tokenOneAmount),
+                token2_amount: tokenTwo.ticker == "BTC" ? Math.round(Number(tokenTwoAmount * 1e8)) : Number(tokenTwoAmount),
             }
             // console.log('window.unisat :>> ', body);
             const { data } = await axios({
@@ -436,40 +437,10 @@ function ExchangeAddLiquidity() {
                         list={tokenSelectList[1]}
                         selectText={"Select Token"}
                         bordered={true}
-                        inputDisabled={currentPool}
                         selectIcon={ordinals}
                         tokenDataList={tokenDataList}
+                        showBalance={true}
                     />
-
-                    {/* {!posChange &&
-                        <ExchangeSelect
-                            amount={tokenOneAmount}
-                            setAmount={setTokenOneAmount}
-                            token={tokenOne}
-                            setToken={setTokenOne}
-                            list={tokenSelectList[0]}
-                            selectText={"Select Token"}
-                            bordered={true}
-                            // inputDisabled={true}
-                            selectIcon={ordinals} />
-                    } */}
-
-                    {/* <div className="mt-[3rem]"></div> */}
-
-                    {/* <ExchangeSelect
-                        amount={result ? result.lp_token_amount : ''}
-                        setAmount={setLPAmount}
-                        token={{ ticker: currentPool ? currentPool.lp_token : 'No pool' }}
-                        setToken={setTokenTwo}
-                        list={tokenSelectList[1]}
-                        selectText={currentPool ? currentPool.lp_token : 'No pool'}
-                        bordered={true}
-                        selectIcon={ordinals}
-                        disabled={true}
-                        label={currentPool ? 'You will receive LP token' : 'Select available token pair.'}
-                        inputDisabled={true}
-                        tokenDataList={tokenDataList}
-                    /> */}
 
                     <AddLiquidityBtn />
                 </div>
