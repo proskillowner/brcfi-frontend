@@ -103,8 +103,8 @@ function ExchangeSelect({
                         disabled={disabled}
                         onClick={handleToggleDataList}
                     >
-                        <img src={selectedOption.ticker == 'BTC' ? btcIcon : selectedOption?.ticker.toLowerCase() === 'bzfi' ? brcfiIcon : (() => {
-                            const selectedItem = tokenDataList?.filter(item => item.symbol.toLowerCase() === selectedOption.ticker.toLowerCase());
+                        <img src={selectedOption.ticker == 'BTC' ? btcIcon : selectedOption?.ticker?.toLowerCase() === 'bzfi' ? brcfiIcon : (() => {
+                            const selectedItem = tokenDataList?.filter(item => item.symbol?.toLowerCase() === selectedOption?.ticker?.toLowerCase());
                             if (selectedItem && selectedItem.length > 0) {
                                 // console.log(selectedItem)
                                 return selectedItem[0].iconUrl + "?size=30x30";
