@@ -75,8 +75,8 @@ function ExchageRemoveLiquidity() {
     }, [])
     useEffect(() => {
         if (lPToken) {
-            setTokenOne(lPToken.token1);
-            setTokenTwo(lPToken.token2);
+            setTokenOne({ticker: lPToken.token1});
+            setTokenTwo({ticker: lPToken.token2});
         }
         else {
             setTokenOne(null);
