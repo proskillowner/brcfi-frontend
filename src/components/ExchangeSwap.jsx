@@ -52,24 +52,17 @@ function ExchangeSwap() {
   const [fee, setFee] = useState(0)
   const settingRef = useRef();
   const [result, getResult] = useTokenTwoAmount(tokenOne, tokenTwo, tokenOneAmount, currentPool)
-  const [priceImpact, setPriceImpact] = useState(false);
 
   useEffect(() => {
     axios.get(`${swapFeeApi}?fee_rate=${feeRate}`)
-      .then(({data}) => {
+      .then(({ data }) => {
         setFee(data.data)
       })
   }, [feeRate])
 
   useEffect(() => {
-    if(!result) return
-    setTokenTwoAmount(tokenTwo.ticker === "BTC"? (result.out_token_amount / 1e8).toFixed(8): result.out_token_amount)
-    setPriceImpact(false)
-    const aVal = currentPool.balance2 * 0.3
-    if (result.out_token_amount > currentPool.balance2 * 0.3) {
-      setPriceImpact(true)
-      messageApi.notifyWarning("Price impact too high")
-    }
+    if (!result) return
+    setTokenTwoAmount(tokenTwo.ticker === "BTC" ? (result.out_token_amount / 1e8).toFixed(8) : result.out_token_amount)
   }, [result])
 
 
@@ -84,7 +77,7 @@ function ExchangeSwap() {
     const targetWallet = poolList.find((pool) => pool.lp_token === record.lp_token).address;
     useEffect(() => {
       let isMounted = true;
-      const getFeeRate = async() => {
+      const getFeeRate = async () => {
         const res = await axios({
           method: 'get',
           url: feeRateUrl
@@ -101,7 +94,7 @@ function ExchangeSwap() {
         isMounted = false
       }
     }, [])
-    
+
     return (
       <>
         <TooltipComp content={`Send ${token} to pool ${record.in_token}/${record.out_token} (${targetWallet}) `}>
@@ -112,7 +105,7 @@ function ExchangeSwap() {
             disabled={disabled}
             onClick={async () => {
               try {
-                await window.unisat.sendInscription(targetWallet, inscriptionId, {feeRate: currentFee});
+                await window.unisat.sendInscription(targetWallet, inscriptionId, { feeRate: currentFee });
                 localStorage.setItem(inscriptionId, 'true');
                 loadOrderList();
               } catch (error) {
@@ -127,12 +120,12 @@ function ExchangeSwap() {
   }
 
   const inTokenAmountRender = (record) => {
-    return <span>{`${record.in_token === 'BTC'? record.in_token_amount / 1e8 : record.in_token_amount}`}</span>
+    return <span>{`${record.in_token === 'BTC' ? record.in_token_amount / 1e8 : record.in_token_amount}`}</span>
   }
 
   const outTokenAmountRender = (record) => {
-    if(record.out_token_amount)
-      return <span>{`${record.out_token === 'BTC'? (record.out_token_amount / 1e8).toFixed(8) : record.out_token_amount}`}</span>
+    if (record.out_token_amount)
+      return <span>{`${record.out_token === 'BTC' ? (record.out_token_amount / 1e8).toFixed(8) : record.out_token_amount}`}</span>
     return <span></span>
   }
 
@@ -299,16 +292,8 @@ function ExchangeSwap() {
   };
 
   const onChangeTokenOneAmount = (value) => {
-    // setPriceImpact(false)
     setTokenOneAmount(value)
-    // if (currentPool && currentPool.balance1 > 0 && currentPool.balance2 > 0) {
-    //   const aVal = currentPool.token1 === "BTC" ? currentPool.balance1 / 1e8 * 0.3 : currentPool.balance1 * 0.3
-    //   if (value > aVal) {
-    //     setPriceImpact(true)
-    //     messageApi.notifyWarning("Price Impact too high")
-    //   } 
-    // }
-    console.log("currentPool_One", currentPool)
+
     if (currentPool && currentPool.balance2 > 0) {
       let mul = 1;
       if (tokenOne.ticker == "BTC") {
@@ -364,16 +349,16 @@ function ExchangeSwap() {
     return (
       <button
         className="d-btn d-btn-primary center-margin active"
-        disabled={!currentPool || !currentPool.balance1 || !currentPool.balance2 || priceImpact}
+        disabled={!currentPool || !currentPool.balance1 || !currentPool.balance2}
         onClick={handleSwapBtn}
       >
-        {priceImpact? 'Price Impact': currentPool && currentPool.balance1 > 0 && currentPool.balance2 > 0 ? 'Swap' : 'No pool exists'}
+        {currentPool && currentPool.balance1 > 0 && currentPool.balance2 > 0 ? 'Swap' : 'No pool exists'}
       </button>)
   }
 
   const [show, setShow] = useState(false);
   const onClose = (e) => {
-      setShow(false)
+    setShow(false)
   }
 
   const onConfirm = (feeRate) => {
@@ -383,7 +368,7 @@ function ExchangeSwap() {
   }
 
   const SwapRate = () => {
-    if(!currentPool || !currentPool.balance1 || !currentPool.balance2) 
+    if (!currentPool || !currentPool.balance1 || !currentPool.balance2)
       return <></>
     let rateVal = 0;
     if (currentPool.token1 === "BTC") {
@@ -393,7 +378,7 @@ function ExchangeSwap() {
     } else {
       rateVal = currentPool.balance2 / currentPool.balance1
     }
-    return <p style={{textAlign: 'center'}}>{`1 ${currentPool.token1} = ${rateVal} ${currentPool.token2}`}</p>
+    return <p style={{ textAlign: 'center' }}>{`1 ${currentPool.token1} = ${rateVal} ${currentPool.token2}`}</p>
   }
 
   return (
@@ -548,7 +533,7 @@ function ExchangeSwap() {
               tokenDataList={tokenDataList}
             />
           } */}
-          {true && 
+          {true &&
             <>
               <ExchangeSelect
                 amount={tokenOneAmount}
