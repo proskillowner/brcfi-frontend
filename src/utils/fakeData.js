@@ -162,7 +162,7 @@ export const fakeOrderList = [{
   token2_amount: 4000,
   order_status: '44',
   description: 'Success',
-  token_transfer1: { inscriptionId: '324sdfs46e4get46edt' }
+  token1_transfer: { inscriptionId: '324sdfs46e4get46edt' }
 },
 {
   order_type: 2,
@@ -176,7 +176,7 @@ export const fakeOrderList = [{
   token2_amount: 4000,
   order_status: '44',
   description: 'Success',
-  token_transfer1: { inscriptionId: '324sdfs46e4get46edt' }
+  token1_transfer: { inscriptionId: '324sdfs46e4get46edt' }
 },
 {
   order_type: 2,
@@ -190,7 +190,7 @@ export const fakeOrderList = [{
   token2_amount: 4000,
   order_status: '44',
   description: 'Success',
-  token_transfer1: { inscriptionId: '324sdfs46e4get46edt' }
+  token1_transfer: { inscriptionId: '324sdfs46e4get46edt' }
 },
 {
   order_type: 2,
@@ -204,7 +204,7 @@ export const fakeOrderList = [{
   token2_amount: 4000,
   order_status: '44',
   description: 'Success',
-  token_transfer1: { inscriptionId: '324sdfs46e4get46edt' }
+  token1_transfer: { inscriptionId: '324sdfs46e4get46edt' }
 },
 {
   order_type: 2,
@@ -218,7 +218,7 @@ export const fakeOrderList = [{
   token2_amount: 4000,
   order_status: '44',
   description: 'Success',
-  token_transfer1: { inscriptionId: '324sdfs46e4get46edt' }
+  token1_transfer: { inscriptionId: '324sdfs46e4get46edt' }
 },
 {
   order_type: 3,
@@ -232,7 +232,7 @@ export const fakeOrderList = [{
   token2_amount: 4000,
   order_status: '44',
   description: 'Success',
-  token_transfer1: { inscriptionId: '324sdfs46e4get46edt' }
+  token1_transfer: { inscriptionId: '324sdfs46e4get46edt' }
 },
 {
   order_type: 3,
@@ -246,7 +246,7 @@ export const fakeOrderList = [{
   token2_amount: 4000,
   order_status: '44',
   description: 'Success',
-  token_transfer1: { inscriptionId: '324sdfs46e4get46edt' }
+  token1_transfer: { inscriptionId: '324sdfs46e4get46edt' }
 }, {
   order_type: 4,
   start_time: 443563434636,
@@ -259,7 +259,7 @@ export const fakeOrderList = [{
   token2_amount: 4000,
   order_status: '44',
   description: 'Success',
-  token_transfer1: { inscriptionId: '324sdfs46e4get46edt' }
+  token1_transfer: { inscriptionId: '324sdfs46e4get46edt' }
 }, {
   order_type: 4,
   start_time: 443563434636,
@@ -272,7 +272,7 @@ export const fakeOrderList = [{
   token2_amount: 4000,
   order_status: '44',
   description: 'Success',
-  token_transfer1: { inscriptionId: '324sdfs46e4get46edt' }
+  token1_transfer: { inscriptionId: '324sdfs46e4get46edt' }
 },
 ]
 

@@ -31,7 +31,7 @@ export function RemoveLiquidityTable({ dataSource }) {
     const transfer = record.lp_token_transfer;
     const token = record.lp_token;
     const amount = id == 1 ? record.token1_amount : record.token2_amount;
-    const inscriptionId = transfer ? transfer.inscription : ''
+    const inscriptionId = transfer ? transfer.inscriptions[0].id : ''
     const disabled = (inscriptionId == '' || localStorage.getItem(inscriptionId) == 'true')
     const targetWallet = poolList.find((pool) => pool.lp_token === record.lp_token).address;
     return (

@@ -12,7 +12,7 @@ import { ORDER_STATUS_LISTED, formatOrderStatus, formatTime, sleep } from "../ut
 import { createColumnHelper } from "@tanstack/react-table";
 import { useModalState } from "../context/ModalContext";
 import ReactPortal from "./ReactPortal";
-import { BTCTestExplorerUrl, addLiquidityApi, feeRateUrl, getTXInfoUrl, updateOrderApi, addLiquidityFeeApi } from "../utils/apiRoutes";
+import { addLiquidityApi, feeRateUrl, getTXInfoUrl, updateOrderApi, addLiquidityFeeApi } from "../utils/apiRoutes";
 import axios from "axios";
 import { Tooltip } from "react-tooltip";
 import TooltipComp from "./customComponents/Tooltip";
@@ -57,11 +57,11 @@ function ExchangeAddLiquidity() {
         let transfer, inscriptionId;
         const token = id == 1 ? record.token1 : record.token2;
         if (token == 'BTC') {
-            transfer = id == 1 ? record.token_transfer2 : record.token_transfer1;
-            inscriptionId = transfer ? transfer.inscription + 'BTC' : ''
+            transfer = id == 1 ? record.token2_transfer : record.token1_transfer;
+            inscriptionId = transfer ? transfer.inscriptions[0].id + 'BTC' : ''
         } else {
-            transfer = id == 1 ? record.token_transfer1 : record.token_transfer2;
-            inscriptionId = transfer ? transfer.inscription : '';
+            transfer = id == 1 ? record.token1_transfer : record.token2_transfer;
+            inscriptionId = transfer ? transfer.inscriptions[0].id : '';
             // const res = await axios
             // await sleep(1000)
         }
