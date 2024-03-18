@@ -1,4 +1,3 @@
-import { Pagination } from "@tanstack/table-core";
 import TimeIcon from "../../../assets/icons/TimeIcon";
 import BlockScan from "../BlockScan";
 import NoDataIcon from "../../../assets/icons/NoDataIcon";

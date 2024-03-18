@@ -1,4 +1,3 @@
-import { Pagination } from "@tanstack/table-core";
 import TimeIcon from "../../../assets/icons/TimeIcon";
 import BlockScan from "../BlockScan";
 import { formatTime } from "../../../utils/constants";
@@ -25,7 +24,7 @@ export function SwapTable({ dataSource }) {
 
   const { unisatContext, appContext } = useAuthState();
   const { unisatWallet, connected, setUnisatInstalled, address, network, balance, connectWallet, checkConnect } = unisatContext;
-  const { factoryWallet, poolList, tokenSelectList, tokenOne, tokenTwo, setTokenOne, setTokenTwo, orderList, loadOrderList, currentPool, calculateFee } = appContext;
+  const { factoryWallet, poolList, tokenSelectList, tokenOne, tokenTwo, setTokenOne, setTokenTwo, orderList, loadOrderList, currentPool } = appContext;
 
 
   const tokenSend = (record, id) => {
