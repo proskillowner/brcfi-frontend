@@ -12,7 +12,7 @@ export function useTokenSelect(address) {
   
   const [tokenList, fetchTokenList] = useFetch(getTokenListApi, { method: 'get' })
   const [poolTokenList, fetchPoolTokenList] = useFetch(getPoolTokenListApi, { method: 'get' })
-  const [tokenBalances, fetchTokenBalanceList] = useFetch(`${getTokenBalanceListApi}?address=${address}`, { method: "get" })
+  const [tokenBalanceList, fetchTokenBalanceList] = useFetch(`${getTokenBalanceListApi}?address=${address}`, { method: "get" })
 
   const [poolTokenLists, setPoolTokenLists] = useState([])
   const [tokenSelectList, setTokenSelectList] = useState([]);
@@ -24,7 +24,6 @@ export function useTokenSelect(address) {
   useEffect(() => {
     if (tokenList) {
       const tmpArray = tokenList.filter(item => item !== 'BTC').map(token => {
-        // const balance = tokenBalances.filter(item => item.ticker === token.ticker)
         return {ticker: token.ticker, balance: 0}
       })
       setArrayAll((prev) => [prev[0], ...tmpArray]);
@@ -54,7 +53,7 @@ export function useTokenSelect(address) {
       });
     };
 
-    if (address != undefined && address) {
+    if (address) {
       getBalance();
       fetchTokenList();
       fetchPoolTokenList();
@@ -102,7 +101,7 @@ export function useTokenSelect(address) {
     tokenList,
     tokenSelectList,
     poolTokenLists,
-    tokenBalances,
+    tokenBalanceList,
     tokenOne,
     tokenTwo,
     setTokenOne,

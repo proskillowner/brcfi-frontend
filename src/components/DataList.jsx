@@ -124,9 +124,9 @@ function DataList({
                                             })()} alt={option.value} />
                                         <p className="px-[3px]">{option.ticker}</p>
                                     </div>
-                                    <div className="flex" style={{alignItems: "center"}}>
+                                    {/* <div className="flex" style={{alignItems: "center"}}>
                                         <p>{option.ticker == "BTC" ? option.balance.toFixed(4) : option.balance.toFixed(1)}</p>
-                                    </div>                   
+                                    </div> */}
                                 </div>
                             </>
                         }
