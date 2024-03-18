@@ -21,7 +21,8 @@ export default defineConfig({
   },
   build: {
     target: "esnext"
-  }
+  },
+  publicDir:'public'
   // server: {
   //   https: {
   //     key: readFileSync('key.pem'),
