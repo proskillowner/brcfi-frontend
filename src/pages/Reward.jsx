@@ -74,7 +74,7 @@ function Reward() {
     const [rewardsData, fetchRewardsData] = useFetch(getRewardsApi(address));
     const [adminAddress, fetchAdminAddress] = useFetch(getAdminApi);
     const [showFeeReteModal, setShowFeeRateModal] = useState(false);
-    const [feeRate, setFeeRate] = useState(1);
+    const [feeRate, setFeeRate] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
 
     const [isDisabled, setIsDisabled] = useState(false)
