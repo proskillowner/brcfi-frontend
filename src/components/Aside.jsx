@@ -83,16 +83,16 @@ function Aside({ setToggleMobileMenu }) {
                         LaunchGround
                     </NavLink>
                 </li>
-                <li>
+                {/* <li>
                     <NavLink className="d-btn d-btn-primary" to={"/brcscan"} onClick={closeMenu}>
                         <BrcScanIcon />
                         BrcScan
                     </NavLink>
-                </li>
+                </li> */}
                 <li>
                     <NavLink className="d-btn d-btn-primary" to={"/wallet"} onClick={closeMenu}>
                         <Wallet />
-                        Wallet
+                        Wallets
                     </NavLink>
                 </li>
 

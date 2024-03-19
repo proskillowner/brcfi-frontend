@@ -29,7 +29,7 @@
 
 .d-btn-outline {
     height: 43px;
-    background: #FEA820;
+    background: #000;
     border-radius: 16px;
     color: white;
     font-weight: normal;
@@ -62,7 +62,7 @@
     // &:hover,
     &:active,
     &.active {
-        background-color: $clr-primary;
+        background-color: #FEA820;
         color: $clr-white !important;
 
         svg {
