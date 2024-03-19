@@ -53,7 +53,9 @@ function ExchageRemoveLiquidity() {
             token1: pool.token1,
             token2: pool.token2,
             address: pool.address,
-            balance: pool.balance
+            balance: pool.lp_balance,
+            balance1: pool.balance1,
+            balance2: pool.balance2,
         }
     }));
 
@@ -64,7 +66,10 @@ function ExchageRemoveLiquidity() {
                 token1: pool.token1,
                 token2: pool.token2,
                 address: pool.address,
-                balance: pool.balance
+                balance: pool.balance,
+                balance: pool.lp_balance,
+                balance1: pool.balance1,
+                balance2: pool.balance2,
             }
         })
         )
@@ -73,10 +78,12 @@ function ExchageRemoveLiquidity() {
     useEffect(() => {
         setLPToken(lpTokenList[0])
     }, [])
+    console.log('lPToken :>> ', lPToken);
+    console.log('poolList :>> ', poolList);
     useEffect(() => {
         if (lPToken) {
-            setTokenOne({ticker: lPToken.token1});
-            setTokenTwo({ticker: lPToken.token2});
+            setTokenOne({ ticker: lPToken.token1, balance: lPToken.balance1 });
+            setTokenTwo({ ticker: lPToken.token2, balance: lPToken.balance2 });
         }
         else {
             setTokenOne(null);
