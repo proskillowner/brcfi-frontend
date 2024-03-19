@@ -149,7 +149,7 @@ function ExchangeSelect({
                 <p className="!font-medium !text-[14px]">Balance: {balance}</p>
                 {showBalance && <button
                     className="!font-medium !text-[14px] exchange__select_max_button px-[5px]"
-                    onClick={() => setAmount(selectedOption.balance)}
+                    onClick={() => setAmount(balance)}
                 >
                     Max
                 </button>}
