@@ -8,7 +8,8 @@ export default function Modal({ onClose, onConfirm }) {
     const [feeRate, setFeeRate] = useState(5);
     const [loading, setLoading] = useState(false);
     const [rateValues, setRateValues] = useState([5, 5, 5]);
-
+    const [selectedOption, setSelectedOption] = useState(0)
+    console.log('rateValues :>> ', rateValues);
     useEffect(() => {
         (async () => {
             setLoading(true);
@@ -19,7 +20,7 @@ export default function Modal({ onClose, onConfirm }) {
                 });
                 setRateValues([res.data?.hourFee || 5, res.data?.halfHourFee || 5, res.data?.fastestFee || 5]);
                 setFeeRate(res.data?.halfHourFee || 5)
-            } catch(err) {
+            } catch (err) {
                 console.log(err)
             } finally {
                 setLoading(false);
@@ -59,17 +60,29 @@ export default function Modal({ onClose, onConfirm }) {
                 </div>
                 {!loading ?
                     <div className="button-group flex gap-8 mb-[20px] px-[30px] justify-center">
-                        <div className="border border-[#00000050] border-color rounded-[10px] w-full py-[10px]">
+                        <div className={`border border-[#00000050] rounded-[10px] w-full py-[10px] ${selectedOption == 0 ? "border-orange-400" : "border-color"}`} onClick={() => {
+                            setSelectedOption(0)
+                            setFeeRate(rateValues[0])
+                            setShowCustom(false)
+                        }}>
                             <div className="mb-[4px] text-center text-[24px]">{rateValues[0]}</div>
                             <div className="mb-[4px] text-center text-[14px]">Sats/VB</div>
                             <div className="mb-[4px] text-center text-[16px] font-semibold">SLOW</div>
                         </div>
-                        <div className="border border-[#00000050] border-color rounded-[10px] w-full py-[10px]">
+                        <div className={`border border-[#00000050] rounded-[10px] w-full py-[10px] ${selectedOption == 1 ? "border-orange-400" : "border-color"}`} onClick={() => {
+                            setSelectedOption(1)
+                            setFeeRate(rateValues[1])
+                            setShowCustom(false)
+                        }}>
                             <div className="mb-[4px] text-center text-[24px]">{rateValues[1]}</div>
                             <div className="mb-[4px] text-center text-[14px]">Sats/VB</div>
                             <div className="mb-[4px] text-center text-[16px] font-semibold">NORMAL</div>
                         </div>
-                        <div className="border border-[#00000050] border-color rounded-[10px] w-full py-[10px]">
+                        <div className={`border border-[#00000050] rounded-[10px] w-full py-[10px] ${selectedOption == 2 ? "border-orange-400" : "border-color"}`} onClick={() => {
+                            setSelectedOption(2)
+                            setFeeRate(rateValues[2])
+                            setShowCustom(false)
+                        }}>
                             <div className="mb-[4px] text-center text-[24px]">{rateValues[2]}</div>
                             <div className="mb-[4px] text-center text-[14px]">Sats/VB</div>
                             <div className="mb-[4px] text-center text-[16px] font-semibold">FAST</div>
@@ -81,7 +94,10 @@ export default function Modal({ onClose, onConfirm }) {
                 }
                 <div className="flex gap-8 px-[30px] items-center text-[14px] justify-center">
                     {!showCustom &&
-                        <div className="px-[15px] py-[10px] text-center cursor-pointer text-[20px] font-semibold whitespace-nowrap border border-[#00000050] border-color rounded-[10px]" onClick={() => setShowCustom(true)}>Custom</div>
+                        <div className="px-[15px] py-[10px] text-center cursor-pointer text-[20px] font-semibold whitespace-nowrap border border-[#00000050] border-color rounded-[10px]" onClick={() => {
+                            setShowCustom(true),
+                                setSelectedOption(3)
+                        }}>Custom</div>
                     }
                     {showCustom &&
                         <input type="number" value={feeRate} onChange={(e) => setFeeRate(e.target.value)} onBlur={onChange} name="feerate" className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block rounded-md focus:ring-1 w-[100px] h-[40px]" placeholder="Enter custom fee rate" />
