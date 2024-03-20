@@ -129,15 +129,15 @@ export function AuthStateProvider({ children }) {
         }
       }, 1000);
       if (!connected)
-          currentNetwork = await window.unisat.getNetwork();
+        currentNetwork = await window.unisat.getNetwork();
       else
-          currentNetwork = await window.unisat.requestAccounts();
+        currentNetwork = await window.unisat.requestAccounts();
       // console.log('Wallet is connected!');
       res(true)
     })
   }
 
-  const connectWallet = async() => {
+  const connectWallet = async () => {
     if (!window.unisat) {
       messageApi.notifyWarning('Please install Unisat wallet!', 3)
       return;
@@ -145,11 +145,11 @@ export function AuthStateProvider({ children }) {
     const connect = await checkConnect();
     if (!connect) return;
     try {
-        const result = await window.unisat.requestAccounts();
-        await window.unisat.switchNetwork('testnet')
-        handleAccountsChanged(result);
-        setConnected(true);
-        messageApi.notifySuccess('Wallet is connected!', 3)
+      const result = await window.unisat.requestAccounts();
+      await window.unisat.switchNetwork('testnet')
+      handleAccountsChanged(result);
+      setConnected(true);
+      messageApi.notifySuccess('Wallet is connected!', 3)
     } catch (error) {
 
     }
@@ -326,7 +326,7 @@ export function AuthStateProvider({ children }) {
   }, [address, connected]);
 
   // useEffect(() => {
-    // console.log('orderList :>> ', orderList);
+  // console.log('orderList :>> ', orderList);
   // }, [orderList])
 
   const [showModal, setShowModal] = useState(false);
@@ -337,6 +337,7 @@ export function AuthStateProvider({ children }) {
         unisatContext: {
           unisatWallet,
           connected,
+          setConnected,
           setUnisatInstalled,
           address,
           network,

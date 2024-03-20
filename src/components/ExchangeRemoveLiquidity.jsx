@@ -66,7 +66,6 @@ function ExchageRemoveLiquidity() {
                 token1: pool.token1,
                 token2: pool.token2,
                 address: pool.address,
-                balance: pool.balance,
                 balance: pool.lp_balance,
                 balance1: pool.balance1,
                 balance2: pool.balance2,

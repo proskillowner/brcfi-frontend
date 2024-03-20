@@ -4,6 +4,18 @@
     // box-shadow: getColor(boxShadow);
 }
 
+.megaWrapper {
+    position: relative;
+}
+
+.megaMenu {
+    display: none;
+}
+
+.megaWrapper:hover .megaMenu {
+    display: block;
+}
+
 .d-btn {
     font-family: inherit;
     font-size: $p-size;

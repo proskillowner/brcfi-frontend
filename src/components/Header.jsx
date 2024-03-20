@@ -22,15 +22,16 @@ function Header({ toggleWalletList, toggleNetworkList, toggleMobileMenu, setTogg
 
     const { unisatContext, authState } = useAuthState();
     const { messageApi } = useToast();
-    const { unisatWallet, connected, setUnisatInstalled, address, network, balance, connectWallet } = unisatContext;
+    const { unisatWallet, connected, setUnisatInstalled, address, network, balance, connectWallet, setConnected } = unisatContext;
     const isMobileView_800 = useResponsiveView();
     const isMobileView_500 = useResponsiveView(500);
     const navigate = useNavigate();
+    const [showDisconnect, setShowDisconnect] = useState(false)
 
     const toastRef = useRef();
 
-    const handleConnect = () => {
-        unisatContext.connectWallet();
+    const toggleDisconnect = () => {
+        setShowDisconnect(!showDisconnect)
     }
 
     useEffect(() => {
@@ -62,14 +63,16 @@ function Header({ toggleWalletList, toggleNetworkList, toggleMobileMenu, setTogg
                     <img className="w-[50px] !object-contain" src={logo} alt="logo" />
                 </figure>
 
-                {isMobileView_800 && (
+                {isMobileView_800 && (<div className="megaWrapper">
                     <button
                         className="d-btn d-btn-primary d-btn-grey flex items-center gap-6"
-                        onClick={connectWallet}
+                        onClick={connected ? toggleDisconnect : connectWallet}
                     >
-                         <img src={unisat_icon} width={31} height={31}/>
+                        <img src={unisat_icon} width={31} height={31} />
                         {connected ? address?.slice(0, 4) + '...' + address?.slice(-4) : 'Connect'}
                     </button>
+                    {connected && <button className="megaMenu absolute top-[100%] left-0 w-full d-btn d-btn-outline d-btn-narrow text-center" onClick={() => { setConnected(false) }}>Disconnect</button>}
+                </div>
                 )}
 
                 {/* <button className="d-btn d-btn-profile" onClick={toggleNetworkList}>
@@ -81,11 +84,13 @@ function Header({ toggleWalletList, toggleNetworkList, toggleMobileMenu, setTogg
                     connected && balance && <p className="!text-[2rem]">{`BTC : ${balance.total / 1e8}`}</p>
                 }
 
-                {!isMobileView_800 && (
-                    <button className="d-btn d-btn-outline d-btn-narrow flex items-center gap-6" onClick={connectWallet}>
-                        <img src={unisat_icon} width={31} height={31}/>
+                {!isMobileView_800 && (<div className="megaWrapper">
+                    <button className="d-btn d-btn-outline d-btn-narrow flex items-center gap-6 relative" onClick={connected ? toggleDisconnect : connectWallet}>
+                        <img src={unisat_icon} width={31} height={31} />
                         {!connected ? 'Connect' : address?.slice(0, 5) + '...' + address?.slice(-5)}
                     </button>
+                    {connected && <button className="megaMenu absolute top-[100%] left-0 w-full d-btn d-btn-outline d-btn-narrow text-center" onClick={() => { setConnected(false) }}>Disconnect</button>}
+                </div>
                 )}
 
                 {!toggleMobileMenu && isMobileView_800 && (
