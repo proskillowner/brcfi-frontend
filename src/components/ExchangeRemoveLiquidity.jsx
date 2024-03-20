@@ -107,7 +107,7 @@ function ExchageRemoveLiquidity() {
                     url: feeRateUrl
                 });
                 if (isMounted) {
-                    setCurrentFee(res.data?.fastestFee || 10);
+                    setCurrentFee(res.data?.fastestFee || 1);
                 }
             }
             if (!disabled) {
