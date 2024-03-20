@@ -180,15 +180,15 @@ function Pool() {
         }
         
         if (lPTokenTick.length < 4) {
-            messageApi.notifyWarning('Please input LP token ticker.');
+            messageApi.notifyWarning('Please input LP token ticker with 4 letters.');
             return;
         }
         if (tokenList.find((token) => token.ticker.toUpperCase() === lPTokenTick.toUpperCase())) {
             messageApi.notifyWarning(`${lPTokenTick} was already deployed`);
             return;
         }
-        if (lPMax == '') {
-            messageApi.notifyWarning('Please input LP token max supply.');
+        if (Number(lPMax) < 21000000) {
+            messageApi.notifyWarning('Please input LP token max supply greater or equal than 21000000.');
             return;
         }
         // openModal();
