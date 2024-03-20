@@ -7,7 +7,7 @@ export default function Modal({ onClose, onConfirm }) {
     const [showCustom, setShowCustom] = useState(false);
     const [feeRate, setFeeRate] = useState(1);
     const [loading, setLoading] = useState(false);
-    const [rateValues, setRateValues] = useState([5, 5, 5]);
+    const [rateValues, setRateValues] = useState([1, 1, 1]);
     const [selectedOption, setSelectedOption] = useState(0)
     console.log('rateValues :>> ', rateValues);
     useEffect(() => {
