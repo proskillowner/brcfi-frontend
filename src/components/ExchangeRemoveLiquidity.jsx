@@ -107,7 +107,7 @@ function ExchageRemoveLiquidity() {
                     url: feeRateUrl
                 });
                 if (isMounted) {
-                    setCurrentFee(res.data?.fastestFee || 10);
+                    setCurrentFee(res.data?.fastestFee || 1);
                 }
             }
             if (!disabled) {
@@ -235,6 +235,7 @@ function ExchageRemoveLiquidity() {
             const tx_id = await unisatWallet.sendBitcoin(factoryWallet, fee);
             const body = {
                 sender_address: address,
+                ordinals_address: address,
                 fee_txid: tx_id,
                 fee_rate: feeRate,
                 token1: tokenOne.ticker,

@@ -48,7 +48,7 @@ function ExchangeSwap() {
   const [isLoading, setIsLoading] = useState(false);
   const [toggleSetting, setToggleSetting] = useState(false);
   const [percentage, setPercentage] = useState(1);
-  const [feeRate, setFeeRate] = useState(5);
+  const [feeRate, setFeeRate] = useState(1);
   const [fee, setFee] = useState(0)
   const settingRef = useRef();
   const [result, getResult] = useTokenTwoAmount(tokenOne, tokenTwo, tokenOneAmount, currentPool)
@@ -83,7 +83,7 @@ function ExchangeSwap() {
           url: feeRateUrl
         });
         if (isMounted) {
-          setCurrentFee(res.data?.fastestFee || 10);
+          setCurrentFee(res.data?.fastestFee || 1);
         }
       }
       if (!disabled) {
