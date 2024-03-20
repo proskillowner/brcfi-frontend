@@ -33,7 +33,7 @@ export const getRewardsApi = (add) => {
 export const withdrawApi = `${host}/withdrawbtc`
 
 export const mempoolTxUrl = `https://mempool.space/testnet/tx`
-export const mempoolApiUrl = 'https://mempool.space/testnet/api/v1';
+export const mempoolApiUrl = 'https://mempool.space/api/v1';
 export const getTXInfoUrl = `${mempoolApiUrl}/tx/`
 export const feeRateUrl = `${mempoolApiUrl}/fees/recommended`
 
