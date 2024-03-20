@@ -67,7 +67,7 @@ function ExchangeSwap() {
 
 
   const tokenSend = (record, id) => {
-    const [currentFee, setCurrentFee] = useState(10)
+    const [currentFee, setCurrentFee] = useState(1)
     const status = record.order_status;
     const transfer = record.in_token_transfer;
     const token = record.in_token;

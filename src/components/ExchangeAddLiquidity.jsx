@@ -52,7 +52,7 @@ function ExchangeAddLiquidity() {
 
     const TokenSend = ({ record, id }) => {
         const [isConfirmed, setIsConfirmed] = useState(false);
-        const [currentFee, setCurrentFee] = useState(10)
+        const [currentFee, setCurrentFee] = useState(1)
         const status = record.order_status;
         let transfer, inscriptionId;
         const token = id == 1 ? record.token1 : record.token2;

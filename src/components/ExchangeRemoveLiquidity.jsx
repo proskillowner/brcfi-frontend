@@ -91,7 +91,7 @@ function ExchageRemoveLiquidity() {
     }, [lPToken]);
 
     const lpTokenSend = (record, id) => {
-        const [currentFee, setCurrentFee] = useState(10)
+        const [currentFee, setCurrentFee] = useState(1)
         const status = record.order_status;
         const transfer = record.lp_token_transfer;
         const token = record.lp_token;
