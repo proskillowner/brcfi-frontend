@@ -41,7 +41,7 @@ function ExchangeAddLiquidity() {
     const [posChange, setPosChange] = useState(false);
     const [hint, setHint] = useState('')
     const [showFeeReteModal, setShowFeeRateModal] = useState(false);
-    const [feeRate, setFeeRate] = useState(0);
+    const [feeRate, setFeeRate] = useState(1);
     const [fee, setFee] = useState(0);
     useEffect(() => {
         axios.get(`${addLiquidityFeeApi}?fee_rate=${feeRate}`)

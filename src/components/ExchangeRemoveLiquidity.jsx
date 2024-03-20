@@ -37,7 +37,7 @@ function ExchageRemoveLiquidity() {
     const [lPToken, setLPToken] = useState(null);
     const [result, getResult] = useTokenOneAndTwo(lPAmount, tokenOne, tokenTwo, lPToken);
     const [showFeeReteModal, setShowFeeRateModal] = useState(false);
-    const [feeRate, setFeeRate] = useState(0);
+    const [feeRate, setFeeRate] = useState(1);
     const [fee, setFee] = useState(0)
 
     useEffect(() => {
