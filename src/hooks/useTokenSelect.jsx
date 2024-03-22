@@ -9,7 +9,7 @@ export function useTokenSelect(address) {
 
   const [tokenOne, setTokenOne] = useState(null);
   const [tokenTwo, setTokenTwo] = useState(null);
-  
+
   const [tokenList, fetchTokenList] = useFetch(getTokenListApi, { method: 'get' })
   const [poolTokenList, fetchPoolTokenList] = useFetch(getPoolTokenListApi, { method: 'get' })
   const [tokenBalanceList, fetchTokenBalanceList] = useFetch(`${getTokenBalanceListApi}?address=${address}`, { method: "get" })
@@ -24,13 +24,13 @@ export function useTokenSelect(address) {
   useEffect(() => {
     if (tokenList) {
       const tmpArray = tokenList.filter(item => item !== 'BTC').map(token => {
-        return {ticker: token.ticker, balance: 0}
+        return { ticker: token.ticker, balance: 0 }
       })
       setArrayAll((prev) => [prev[0], ...tmpArray]);
     }
     if (poolTokenList && poolTokenList.length > 0) {
       const tmpArray = poolTokenList.filter(item => item !== 'BTC').map(item => {
-        return {ticker: item, balance: 0}
+        return { ticker: item, balance: 0 }
       })
       setArrayPoolTokens((prev) => [prev[0], ...tmpArray]);
     }
@@ -90,11 +90,11 @@ export function useTokenSelect(address) {
   }, [arrayAll]);
 
   useEffect(() => {
-    if (tokenOne && tokenOne === tokenTwo) setTokenTwo(null)
+    if (tokenOne && tokenOne?.ticker === tokenTwo?.ticker) setTokenTwo(null)
   }, [tokenOne])
 
   useEffect(() => {
-    if (tokenTwo && tokenOne === tokenTwo) setTokenOne(null)
+    if (tokenTwo && tokenOne?.ticker === tokenTwo?.ticker) setTokenOne(null)
   }, [tokenTwo])
 
   return [
