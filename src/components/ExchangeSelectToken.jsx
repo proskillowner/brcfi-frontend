@@ -61,7 +61,7 @@ function ExchangeSelectToken({ amount, setAmount, token, setToken, list, tokenDa
             >
                 <div className="mb-3">{label}</div>
                 <div className="flex items-center">
-                    <img className="w-[32px] h-[32px] icon" src={selectedOption?.ticker === 'BTC' ? btcIcon : selectedOption?.ticker === 'BZFI'? brcfiIcon : (() => {
+                    <img className="w-[32px] h-[32px] icon" src={selectedOption?.ticker === 'BTC' ? btcIcon : selectedOption?.ticker === 'BRFI'? brcfiIcon : (() => {
                             const selectedItem = tokenDataList?.filter(item => item.symbol.toLowerCase() === selectedOption?.ticker?.toLowerCase());
                             if (selectedItem && selectedItem.length > 0) {
                                 return selectedItem[0].iconUrl + "?size=30x30";

@@ -18,8 +18,8 @@ export function useTokenSelect(address) {
   const [tokenSelectList, setTokenSelectList] = useState([]);
 
   // Declare arrayAll and arrayPoolTokens as state variables
-  const [arrayAll, setArrayAll] = useState([{ ticker: "BTC", balance: 0 }, { ticker: "BZFI", balance: 0 }, { ticker: "ORDI", balance: 0 }, { ticker: "SATS", balance: 0 }, { ticker: "MUBI", balance: 0 }, { ticker: "TRAC", balance: 0 }]);
-  const [arrayPoolTokens, setArrayPoolTokens] = useState([{ ticker: "BTC", balance: 0 }, { ticker: "BZFI", balance: 0 }, { ticker: "ORDI", balance: 0 }, { ticker: "SATS", balance: 0 }, { ticker: "MUBI", balance: 0 }, { ticker: "TRAC", balance: 0 }]);
+  const [arrayAll, setArrayAll] = useState([{ ticker: "BTC", balance: 0 }, { ticker: "BRFI", balance: 0 }, { ticker: "ORDI", balance: 0 }, { ticker: "SATS", balance: 0 }, { ticker: "MUBI", balance: 0 }, { ticker: "TRAC", balance: 0 }]);
+  const [arrayPoolTokens, setArrayPoolTokens] = useState([{ ticker: "BTC", balance: 0 }, { ticker: "BRFI", balance: 0 }, { ticker: "ORDI", balance: 0 }, { ticker: "SATS", balance: 0 }, { ticker: "MUBI", balance: 0 }, { ticker: "TRAC", balance: 0 }]);
 
   useEffect(() => {
     if (tokenList) {

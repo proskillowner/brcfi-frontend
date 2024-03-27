@@ -115,7 +115,7 @@ function DataList({
                             <>
                                 <div className="flex justify-between w-[100%]">
                                     <div className="flex" style={{alignItems: "center"}}>
-                                        <img src={option.ticker === 'BTC' ? btcIcon : option.ticker.toLowerCase() === 'bzfi'? brcfiIcon : (() => {
+                                        <img src={option.ticker === 'BTC' ? btcIcon : option.ticker.toLowerCase() === 'brfi'? brcfiIcon : (() => {
                                             const selectedItem = appContext?.tokenDataList?.filter(item => item.symbol.toLowerCase() === option.ticker.toLowerCase());
                                             if (selectedItem && selectedItem.length > 0) {
                                                 return selectedItem[0].iconUrl + "?size=30x30";
