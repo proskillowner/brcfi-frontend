@@ -23,14 +23,32 @@ export function useTokenSelect(address) {
 
   useEffect(() => {
     if (tokenList) {
-      const tmpArray = tokenList.filter(item => item !== 'BTC').map(token => {
+      let tmpArray = tokenList.filter(item => item !== 'BTC').map(token => {
         return { ticker: token.ticker, balance: 0 }
+      })
+      tmpArray = tmpArray.sort((a, b) => {
+        if (a.ticker === "BRFI") {
+          return -1;
+        } else if (b.ticker === "BRFI") {
+          return 1;
+        } else {
+          return b.balance - a.balance;
+        }
       })
       setArrayAll((prev) => [prev[0], ...tmpArray]);
     }
     if (poolTokenList && poolTokenList.length > 0) {
-      const tmpArray = poolTokenList.filter(item => item !== 'BTC').map(item => {
+      let tmpArray = poolTokenList.filter(item => item !== 'BTC').map(item => {
         return { ticker: item, balance: 0 }
+      })
+      tmpArray = tmpArray.sort((a, b) => {
+        if (a.ticker === "BRFI") {
+          return -1;
+        } else if (b.ticker === "BRFI") {
+          return 1;
+        } else {
+          return b.balance - a.balance;
+        }
       })
       setArrayPoolTokens((prev) => [prev[0], ...tmpArray]);
     }
