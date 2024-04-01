@@ -17,6 +17,9 @@ import { useResponsiveView } from "../utils/customHooks";
 import WalletIcon from "../assets/icons/WalletIcon";
 import { useToast } from "../hooks/useToast";
 import ReactPortal from "./ReactPortal";
+import { useDailyVolume } from "../hooks/useDashboard";
+
+const DAY_IN_SECOND = 24 * 60 * 60
 
 function Header({ toggleWalletList, toggleNetworkList, toggleMobileMenu, setToggleMobileMenu }) {
 
@@ -29,6 +32,9 @@ function Header({ toggleWalletList, toggleNetworkList, toggleMobileMenu, setTogg
     const [showDisconnect, setShowDisconnect] = useState(false)
 
     const toastRef = useRef();
+
+    const [currentVolume, setCurrentVolume] = useState(0)
+    const { data: volumeList } = useDailyVolume()
 
     const toggleDisconnect = () => {
         setShowDisconnect(!showDisconnect)
@@ -51,6 +57,19 @@ function Header({ toggleWalletList, toggleNetworkList, toggleMobileMenu, setTogg
         }
     }, [toggleMobileMenu]);
 
+    useEffect(() => {
+        setCurrentVolume(0)
+
+        if (!volumeList) return;
+
+        let todayVolume = 0
+        volumeList.map(item => {
+            todayVolume += item.volume
+        })
+
+        setCurrentVolume(todayVolume)
+    }, [volumeList]);
+
     return (
         <>
             {toggleMobileMenu && isMobileView_800 && (
@@ -62,6 +81,8 @@ function Header({ toggleWalletList, toggleNetworkList, toggleMobileMenu, setTogg
                 <figure className="logo__container hide-desktop" onClick={() => { navigate('/') }}>
                     <img className="w-[50px] !object-contain" src={logo} alt="logo" />
                 </figure>
+
+                <p className="!text-[2rem] mr-[50px]">{`Volume 24H : ${(currentVolume / 1e8).toFixed(2)} BTC`}</p>
 
                 {isMobileView_800 && (<div className="megaWrapper">
                     <button

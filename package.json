@@ -15,14 +15,14 @@
     "axios": "^1.4.0",
     "bip32": "^4.0.0",
     "chart.js": "^4.3.0",
-    "micro-btc-signer": "^0.4.2",
     "react": "^17.0.2",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^17.0.2",
     "react-router-dom": "^6.4.5",
     "react-toastify": "^9.1.3",
     "react-tooltip": "^5.13.1",
-    "sats-connect": "^0.2.0"
+    "sats-connect": "^0.2.0",
+    "swr": "^2.2.5"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^1.0.7",

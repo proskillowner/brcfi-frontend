@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useReducer, useState, useRef } from "react";
 
 import { getAddress, signTransaction } from "sats-connect";
-import * as btc from "micro-btc-signer";
+import * as btc from "@scure/btc-signer";
 import { hex, base64 } from "@scure/base";
 
 import { useToast } from "../hooks/useToast";

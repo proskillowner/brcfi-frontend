@@ -31,6 +31,7 @@ export const getRewardsApi = (add) => {
     return `${host}/getbtcbalance/platform/${add}/list`
 }
 export const withdrawApi = `${host}/withdrawbtc`
+export const getVolumeList = `${host}/getVolumeList`;
 
 export const mempoolTxUrl = `https://mempool.space/testnet/tx`
 export const mempoolApiUrl = 'https://mempool.space/testnet/api/v1';
