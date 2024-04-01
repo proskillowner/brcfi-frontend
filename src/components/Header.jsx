@@ -17,7 +17,7 @@ import { useResponsiveView } from "../utils/customHooks";
 import WalletIcon from "../assets/icons/WalletIcon";
 import { useToast } from "../hooks/useToast";
 import ReactPortal from "./ReactPortal";
-import { useDailyVolume } from "../hooks/useDashboard";
+import { useTotalVolume, useDailyVolume } from "../hooks/useDashboard";
 
 const DAY_IN_SECOND = 24 * 60 * 60
 
@@ -33,8 +33,10 @@ function Header({ toggleWalletList, toggleNetworkList, toggleMobileMenu, setTogg
 
     const toastRef = useRef();
 
-    const [currentVolume, setCurrentVolume] = useState(0)
-    const { data: volumeList } = useDailyVolume()
+    const [totalVolume, setTotalVolume] = useState(0)
+    const [dailyVolume, setDailyVolume] = useState(0)
+    const { data: totalVolumeList } = useTotalVolume()
+    const { data: dailyVolumeList } = useDailyVolume()
 
     const toggleDisconnect = () => {
         setShowDisconnect(!showDisconnect)
@@ -58,17 +60,30 @@ function Header({ toggleWalletList, toggleNetworkList, toggleMobileMenu, setTogg
     }, [toggleMobileMenu]);
 
     useEffect(() => {
-        setCurrentVolume(0)
+        setTotalVolume(0)
 
-        if (!volumeList) return;
+        if (!totalVolumeList) return;
 
-        let todayVolume = 0
-        volumeList.map(item => {
-            todayVolume += item.volume
+        let totalVolumeValue = 0
+        totalVolumeList.map(item => {
+            totalVolumeValue += item.volume
         })
 
-        setCurrentVolume(todayVolume)
-    }, [volumeList]);
+        setTotalVolume(totalVolumeValue)
+    }, [totalVolumeList]);
+
+    useEffect(() => {
+        setDailyVolume(0)
+
+        if (!dailyVolumeList) return;
+
+        let dailyVolumeValue = 0
+        dailyVolumeList.map(item => {
+            dailyVolumeValue += item.volume
+        })
+
+        setDailyVolume(dailyVolumeValue)
+    }, [dailyVolumeList]);
 
     return (
         <>
@@ -82,7 +97,9 @@ function Header({ toggleWalletList, toggleNetworkList, toggleMobileMenu, setTogg
                     <img className="w-[50px] !object-contain" src={logo} alt="logo" />
                 </figure>
 
-                <p className="!text-[2rem] mr-[50px]">{`Volume 24H : ${(currentVolume / 1e8).toFixed(2)} BTC`}</p>
+                <p className="!text-[2rem] mr-[50px]">{`Total Volume : ${(totalVolume / 1e8).toFixed(2)} BTC`}</p>
+
+                <p className="!text-[2rem] mr-[50px]">{`24H Volume : ${(dailyVolume / 1e8).toFixed(2)} BTC`}</p>
 
                 {isMobileView_800 && (<div className="megaWrapper">
                     <button
