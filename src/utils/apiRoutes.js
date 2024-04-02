@@ -38,7 +38,8 @@ export const mempoolApiUrl = 'https://mempool.space/testnet/api/v1';
 export const getTXInfoUrl = `${mempoolApiUrl}/tx/`
 export const feeRateUrl = `${mempoolApiUrl}/fees/recommended`
 
-export const dayilyURL = 'https://api.coingecko.com/api/v3/coins/ordinals/market_chart?vs_currency=usd&days=1'
-export const weeklyURL = 'https://api.coingecko.com/api/v3/coins/ordinals/market_chart?vs_currency=usd&days=7'
-export const monthlyURL = 'https://api.coingecko.com/api/v3/coins/ordinals/market_chart?vs_currency=usd&days=31'
-export const yearlyURL = 'https://api.coingecko.com/api/v3/coins/ordinals/market_chart?vs_currency=usd&days=365'
+export const dayilyURL = 'https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1'
+export const weeklyURL = 'https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=7'
+export const monthlyURL = 'https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=31'
+export const yearlyURL = 'https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=365'
+export const btcPriceURL = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd'

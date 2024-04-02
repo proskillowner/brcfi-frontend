@@ -59,31 +59,31 @@ function Header({ toggleWalletList, toggleNetworkList, toggleMobileMenu, setTogg
         }
     }, [toggleMobileMenu]);
 
-    useEffect(() => {
-        setTotalVolume(0)
+    // useEffect(() => {
+    //     setTotalVolume(0)
 
-        if (!totalVolumeList) return;
+    //     if (!totalVolumeList) return;
 
-        let totalVolumeValue = 0
-        totalVolumeList.map(item => {
-            totalVolumeValue += item.volume
-        })
+    //     let totalVolumeValue = 0
+    //     totalVolumeList.map(item => {
+    //         totalVolumeValue += item.volume
+    //     })
 
-        setTotalVolume(totalVolumeValue)
-    }, [totalVolumeList]);
+    //     setTotalVolume(totalVolumeValue)
+    // }, [totalVolumeList]);
 
-    useEffect(() => {
-        setDailyVolume(0)
+    // useEffect(() => {
+    //     setDailyVolume(0)
 
-        if (!dailyVolumeList) return;
+    //     if (!dailyVolumeList) return;
 
-        let dailyVolumeValue = 0
-        dailyVolumeList.map(item => {
-            dailyVolumeValue += item.volume
-        })
+    //     let dailyVolumeValue = 0
+    //     dailyVolumeList.map(item => {
+    //         dailyVolumeValue += item.volume
+    //     })
 
-        setDailyVolume(dailyVolumeValue)
-    }, [dailyVolumeList]);
+    //     setDailyVolume(dailyVolumeValue)
+    // }, [dailyVolumeList]);
 
     return (
         <>
@@ -97,11 +97,13 @@ function Header({ toggleWalletList, toggleNetworkList, toggleMobileMenu, setTogg
                     <img className="w-[50px] !object-contain" src={logo} alt="logo" />
                 </figure>
 
-                <p className="!text-[2rem] mr-[50px]">{`Total Volume : ${(totalVolume / 1e8).toFixed(2)} BTC`}</p>
+                {/* <p className="!text-[1.5rem] mr-[10px]">{`Total Volume : ${(totalVolume / 1e8).toFixed(2)} BTC`}<br/>{`24H Volume : ${(dailyVolume / 1e8).toFixed(2)} BTC`}</p> */}
 
-                <p className="!text-[2rem] mr-[50px]">{`24H Volume : ${(dailyVolume / 1e8).toFixed(2)} BTC`}</p>
+                {
+                    connected && balance && <p className="!text-[1.5rem]">{`Balance : ${balance.total / 1e8} BTC`}</p>
+                }
 
-                {isMobileView_800 && (<div className="megaWrapper">
+                {isMobileView_800 && (<div className="megaWrapper min-w-[200px]">
                     <button
                         className="d-btn d-btn-primary d-btn-grey flex items-center gap-6"
                         onClick={connected ? toggleDisconnect : connectWallet}
@@ -118,12 +120,9 @@ function Header({ toggleWalletList, toggleNetworkList, toggleMobileMenu, setTogg
 
                     <span className="hide-mobile-s">BTC Testnet</span>
                 </button> */}
-                {
-                    connected && balance && <p className="!text-[2rem]">{`BTC : ${balance.total / 1e8}`}</p>
-                }
 
                 {!isMobileView_800 && (<div className="megaWrapper">
-                    <button className="d-btn d-btn-outline d-btn-narrow flex items-center gap-6 relative" onClick={connected ? toggleDisconnect : connectWallet}>
+                    <button className="d-btn d-btn-outline flex items-center gap-6" onClick={connected ? toggleDisconnect : connectWallet}>
                         <img src={unisat_icon} width={31} height={31} />
                         {!connected ? 'Connect' : address?.slice(0, 5) + '...' + address?.slice(-5)}
                     </button>

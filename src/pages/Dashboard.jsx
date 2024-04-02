@@ -9,6 +9,7 @@ import {
     Tooltip,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import { useTotalVolume, useDailyVolume } from "../hooks/useDashboard";
 
 import BitcoinIcon from "../assets/images/rocket.png";
 
@@ -26,6 +27,7 @@ import useGetURL from "../hooks/useGetChartData";
 import useGetChartData from "../hooks/useGetChartData";
 import Modal from "../components/Modal";
 import LPIcon from "../assets/icons/LPIcon";
+import { btcPriceURL } from "../utils/apiRoutes";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Filler, Tooltip);
 const options = {
@@ -73,6 +75,20 @@ function Dashboard() {
     const [currentPrice, setCurrentPrice] = useState('$0.00');
     const [percent, setPercent] = useState('0.00%');
     const [negativePercent, setNegativePercent] = useState(false)
+
+    const [btcPrice, setBtcPrice] = useState(0)
+    const [totalVolume, setTotalVolume] = useState(0)
+    const [dailyVolume, setDailyVolume] = useState(0)
+    const { data: totalVolumeList } = useTotalVolume()
+    const { data: dailyVolumeList } = useDailyVolume()
+
+    useEffect(async () =>  {
+        const response = await axios.get(btcPriceURL)
+        if (response && response.status === 200) {
+            setBtcPrice(response.data.bitcoin.usd)
+        }
+    }, []);
+
     useEffect(() => {
         if (!chartData) return
         const labels = chartData[period].map((row) => formatTime(row[0]))
@@ -99,14 +115,61 @@ function Dashboard() {
         const start = chartData[period][0][1].toFixed(2);
         const pro = 100 * (current - start) / start;
         setCurrentPrice('$' + current);
-        const negative = pro >= 0 ? '+': '';
+        const negative = pro >= 0 ? '+' : '';
         setNegativePercent(pro < 0)
         setPercent(negative + pro.toFixed(2) + '%')
     }, [chartData, period]);
+
+    useEffect(() => {
+        setTotalVolume(0)
+
+        if (!totalVolumeList) return;
+
+        let totalVolumeValue = 0
+        totalVolumeList.map(item => {
+            totalVolumeValue += item.volume
+        })
+
+        setTotalVolume(totalVolumeValue)
+    }, [totalVolumeList]);
+
+    useEffect(() => {
+        setDailyVolume(0)
+
+        if (!dailyVolumeList) return;
+
+        let dailyVolumeValue = 0
+        dailyVolumeList.map(item => {
+            dailyVolumeValue += item.volume
+        })
+
+        setDailyVolume(dailyVolumeValue)
+    }, [dailyVolumeList]);
+
     return (
         <section className="dashboard__container">
-            <h1>BrcFi</h1>
-            <p>Buy, Trade, Hold, Lend, Borrow, Explore and Launch on BrcFi</p>
+            <section className="flex justify-center gap-10 mt-10 mb-5">
+                <div className="card flex flex-col items-center justify-center p-10 w-[300px] !py-6">
+                    <p className="text-md">Total Volume in USD</p>
+                    <h3>{`${(totalVolume * btcPrice / 1e8).toFixed(2)} USD`}</h3>
+                </div>
+
+                <div className="card flex flex-col items-center justify-center p-10 w-[300px] !py-6">
+                    <p className="text-md">Total Volume in BTC</p>
+                    <h3>{`${(totalVolume / 1e8).toFixed(2)} BTC`}</h3>
+                </div>
+
+                <div className="card flex flex-col items-center justify-center p-10 w-[300px] !py-6">
+                    <p className="text-md">24h Volume in USD</p>
+                    <h3>{`${(dailyVolume * btcPrice / 1e8).toFixed(2)} USD`}</h3>
+                </div>
+
+                <div className="card flex flex-col items-center justify-center p-10 w-[300px] !py-6">
+                    <p className="text-md">24h Volume in BTC</p>
+                    <h3>{`${(dailyVolume / 1e8).toFixed(2)} BTC`}</h3>
+                </div>
+            </section>
+
 
             <section className="cards__container">
                 <Link to="/swap" className="card glass-effect">
@@ -153,7 +216,7 @@ function Dashboard() {
                     </header>
 
                     <div className="absolute top-[25px] md:ml-[45%] ml-[30px] text-center">
-                        <div className="md:text-[24px] text-[14px]">ORDI</div>
+                        <div className="md:text-[24px] text-[14px]">BTC</div>
                         <div className="md:text-[32px] text-[20px] font-medium">{currentPrice}</div>
                         {negativePercent && <div className="md:text-[18px] text-[12px] text-[#D74136]">{percent}</div>}
                         {!negativePercent && <div className="md:text-[18px] text-[12px] text-[#3BDC68]">{percent}</div>}

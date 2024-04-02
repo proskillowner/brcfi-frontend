@@ -1,6 +1,6 @@
 import useSWR from 'swr'
 import axios from 'axios'
-import { getVolumeList } from '../utils/apiRoutes';
+import { btcPriceURL, getVolumeList } from '../utils/apiRoutes';
 
 export const useTotalVolume = function () {
     const startTime = 0
