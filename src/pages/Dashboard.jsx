@@ -9,6 +9,7 @@ import {
     Tooltip,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import axios from "axios";
 import { useTotalVolume, useDailyVolume } from "../hooks/useDashboard";
 
 import BitcoinIcon from "../assets/images/rocket.png";
@@ -79,15 +80,34 @@ function Dashboard() {
     const [btcPrice, setBtcPrice] = useState(0)
     const [totalVolume, setTotalVolume] = useState(0)
     const [dailyVolume, setDailyVolume] = useState(0)
+    const [totalVolumeUsd, setTotalVolumeUsd] = useState(0)
+    const [dailyVolumeUsd, setDailyVolumeUsd] = useState(0)
     const { data: totalVolumeList } = useTotalVolume()
     const { data: dailyVolumeList } = useDailyVolume()
 
-    useEffect(async () =>  {
-        const response = await axios.get(btcPriceURL)
-        if (response && response.status === 200) {
-            setBtcPrice(response.data.bitcoin.usd)
-        }
-    }, []);
+    useEffect(async () => {
+        const getBtcPrice = async () => {
+            try {
+                const response = await axios.get(btcPriceURL)
+                if (response && response.status === 200) {
+                    setBtcPrice(response.data.bitcoin.usd)
+                } else {
+                    getBtcPrice()
+                }
+            } catch (error) {
+                setTimeout(() => {
+                    getBtcPrice()
+                }, 10 * 1000)
+            }
+        };
+
+        getBtcPrice()
+    }, [])
+
+    useEffect(() => {
+        setTotalVolumeUsd(totalVolume * btcPrice)
+        setDailyVolumeUsd(dailyVolume * btcPrice)
+    }, [btcPrice])
 
     useEffect(() => {
         if (!chartData) return
@@ -130,7 +150,8 @@ function Dashboard() {
             totalVolumeValue += item.volume
         })
 
-        setTotalVolume(totalVolumeValue)
+        setTotalVolume(totalVolumeValue / 1e8)
+        setTotalVolumeUsd(totalVolumeValue * btcPrice / 1e8)
     }, [totalVolumeList]);
 
     useEffect(() => {
@@ -143,30 +164,31 @@ function Dashboard() {
             dailyVolumeValue += item.volume
         })
 
-        setDailyVolume(dailyVolumeValue)
+        setDailyVolume(dailyVolumeValue / 1e8)
+        setDailyVolumeUsd(dailyVolumeValue * btcPrice / 1e8)
     }, [dailyVolumeList]);
 
     return (
         <section className="dashboard__container">
-            <section className="flex justify-center gap-10 mt-10 mb-5">
+            <section className="flex justify-center gap-10 mb-5">
                 <div className="card flex flex-col items-center justify-center p-10 w-[300px] !py-6">
                     <p className="text-md">Total Volume in USD</p>
-                    <h3>{`${(totalVolume * btcPrice / 1e8).toFixed(2)} USD`}</h3>
+                    <h3>{`${(totalVolumeUsd > 1e6 ? totalVolumeUsd / 1e6 : totalVolumeUsd > 1e3 ? totalVolumeUsd / 1e3 : totalVolumeUsd).toFixed(2)}${totalVolumeUsd > 1e6 ? 'M' : totalVolumeUsd > 1e3 ? 'K' : ''} USD`}</h3>
                 </div>
 
                 <div className="card flex flex-col items-center justify-center p-10 w-[300px] !py-6">
                     <p className="text-md">Total Volume in BTC</p>
-                    <h3>{`${(totalVolume / 1e8).toFixed(2)} BTC`}</h3>
+                    <h3>{`${(totalVolume).toFixed(2)} BTC`}</h3>
                 </div>
 
                 <div className="card flex flex-col items-center justify-center p-10 w-[300px] !py-6">
                     <p className="text-md">24h Volume in USD</p>
-                    <h3>{`${(dailyVolume * btcPrice / 1e8).toFixed(2)} USD`}</h3>
+                    <h3>{`${(dailyVolumeUsd > 1e6 ? dailyVolumeUsd / 1e6 : dailyVolumeUsd > 1e3 ? dailyVolumeUsd / 1e3 : dailyVolumeUsd).toFixed(2)}${dailyVolumeUsd > 1e6 ? 'M' : dailyVolumeUsd > 1e3 ? 'K' : ''} USD`}</h3>
                 </div>
 
                 <div className="card flex flex-col items-center justify-center p-10 w-[300px] !py-6">
                     <p className="text-md">24h Volume in BTC</p>
-                    <h3>{`${(dailyVolume / 1e8).toFixed(2)} BTC`}</h3>
+                    <h3>{`${(dailyVolume).toFixed(2)} BTC`}</h3>
                 </div>
             </section>
 
